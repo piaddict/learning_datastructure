@@ -1,105 +1,82 @@
 package stack
 
 import (
-	"fmt"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
-func Example_New_스택생성() {
+func Test_New_스택생성(t *testing.T) {
 	stack := New(10)
 	stack.Push(5)
 	stack.Push(4)
 	stack.Push(3)
 	stack.Push(2)
-	fmt.Println(stack != nil)
-	fmt.Println(stack.Pop())
-	fmt.Println(stack.Pop())
-	// Output:
-	// true
-	// 2
-	// 3
+
+	assert.NotNil(t, stack)
+	assert.Equal(t, 2, stack.Pop())
+	assert.Equal(t, 3, stack.Pop())
 }
 
-func Example_Push_빈스택_자료4개_추가() {
+func Test_Push_빈스택_자료4개_추가(t *testing.T) {
 	stack := New(10)
 	stack.Push(5)
 	stack.Push(4)
 	stack.Push(3)
 	stack.Push(2)
-	fmt.Println(stack.Peek())
-	fmt.Println(stack.Peek())
-	// Output:
-	// 2
-	// 2
+
+	assert.Equal(t, 2, stack.Peek())
+	assert.Equal(t, 2, stack.Peek())
 }
 
-func Example_Push_가득찬_스택_자료추가시_panic() {
+func Test_Push_가득찬_스택_자료추가시_panic(t *testing.T) {
 	stack := New(3)
 	stack.Push(5)
 	stack.Push(4)
-	fmt.Println(stack.IsFull())
+	assert.False(t, stack.IsFull())
 	stack.Push(3)
-	fmt.Println(stack.IsFull())
-	stack.Push(2)
-	// Output:
-	// false
-	// true
-	// 스택이 가득 찼습니다
+	assert.True(t, stack.IsFull())
+	assert.Nil(t, stack.Push(2))
 }
 
-func Example_Pop_스택자료를_Pop() {
+func Test_Pop_스택자료를_Pop(t *testing.T) {
 	stack := New(5)
 	stack.Push(5)
 	stack.Push(4)
 	stack.Push(3)
 	stack.Push(2)
 	stack.Push(1)
-	fmt.Println(stack.Pop())
-	fmt.Println(stack.Pop())
-	fmt.Println(stack.Pop())
-	fmt.Println(stack.Pop())
-	fmt.Println(stack.Pop())
-	// Output:
-	// 1
-	// 2
-	// 3
-	// 4
-	// 5
+
+	assert.Equal(t, 1, stack.Pop())
+	assert.Equal(t, 2, stack.Pop())
+	assert.Equal(t, 3, stack.Pop())
+	assert.Equal(t, 4, stack.Pop())
+	assert.Equal(t, 5, stack.Pop())
 }
 
-func Example_Pop_빈스택_Pop실행시_패닉() {
+func Test_Pop_빈스택_Pop실행시_패닉(t *testing.T) {
 	stack := New(10)
-	fmt.Println(stack.IsEmpty())
-	stack.Pop()
-	// Output:
-	// true
-	// 스택에 자료가 없습니다
+	assert.True(t, stack.IsEmpty())
+	assert.Nil(t, stack.Pop())
 }
 
-func Example_Pop_스택자료를_Peek() {
+func Test_Pop_스택자료를_Peek(t *testing.T) {
 	stack := New(5)
 	stack.Push(5)
 	stack.Push(4)
 	stack.Push(3)
 	stack.Push(2)
 	stack.Push(1)
-	fmt.Println(stack.Peek())
-	fmt.Println(stack.Peek())
-	fmt.Println(stack.Peek())
-	fmt.Println(stack.Peek())
-	fmt.Println(stack.Peek())
-	// Output:
-	// 1
-	// 1
-	// 1
-	// 1
-	// 1
+
+	assert.Equal(t, 1, stack.Peek())
+	assert.Equal(t, 1, stack.Peek())
+	assert.Equal(t, 1, stack.Peek())
+	assert.Equal(t, 1, stack.Peek())
+	assert.Equal(t, 1, stack.Peek())
 }
 
-func Example_Peek_빈스택_Peek실행시_패닉() {
+func Test_Peek_빈스택_Peek실행시_패닉(t *testing.T) {
 	stack := New(10)
-	fmt.Println(stack.IsEmpty())
-	stack.Peek()
-	// Output:
-	// true
-	// 스택에 자료가 없습니다
+	assert.True(t, stack.IsEmpty())
+	assert.Nil(t, stack.Peek())
 }
