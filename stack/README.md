@@ -6,7 +6,7 @@
 
 - 스택 객체: 0개 이상의 원소를 갖는 유한 순서 리스트
 - 스택 객체 생성
-  - `New(size int) Stack` ::= 스택의 크기가 maxStackSize인 빈스택을 생성하고 반환
+  - `New(size int) Stack` ::= 크기가 maxStackSize인 빈스택을 생성하고 반환
 - 인터페이스
   - `IsFull() bool` ::= stack element 수 == maxStackSize
   - `IsEmpty() bool` ::= stack element 수 == 0
