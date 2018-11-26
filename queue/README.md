@@ -36,3 +36,10 @@
 
 - `rear := (rear + 1) % n`
 - `front := (front + 1) % n`
+
+처음은 rear, front 모두 0으로 시작하고 첫 원소는 1번 주소부터 삽입한다.
+
+- IsEmpty: `front == rear`
+- IsFull: `front == (rear + 1) % n`
+
+큐가 비어있는지/가득차있는지 확인하기 위해 원형 큐의 공간 하나는 비워둔 상태로 유지한다.
