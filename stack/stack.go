@@ -8,6 +8,7 @@ type (
 	// ArrayStack 구조체는 내부 자료구조로 배열을 사용한다
 	ArrayStack struct {
 		stack  []interface{}
+		size   int
 		cursor int
 	}
 
@@ -24,13 +25,14 @@ type (
 func New(size int) Stack {
 	s := ArrayStack{
 		stack:  make([]interface{}, size),
+		size:   size,
 		cursor: -1,
 	}
 	return &s
 }
 
 func (this *ArrayStack) IsFull() bool {
-	if this.cursor == len(this.stack)-1 {
+	if this.cursor == this.size-1 {
 		return true
 	}
 	return false
@@ -44,17 +46,17 @@ func (this *ArrayStack) IsEmpty() bool {
 }
 
 func (this *ArrayStack) Push(item interface{}) Stack {
-	if this.cursor < len(this.stack)-1 {
-		this.stack[this.cursor+1] = item
-		this.cursor++
-		return this
+	if this.IsFull() {
+		fmt.Println("스택이 가득 찼습니다")
+		return nil
 	}
-	fmt.Println("스택이 가득 찼습니다")
-	return nil
+	this.stack[this.cursor+1] = item
+	this.cursor++
+	return this
 }
 
 func (this *ArrayStack) Pop() interface{} {
-	if this.cursor == -1 {
+	if this.IsEmpty() {
 		fmt.Println("스택에 자료가 없습니다")
 		return nil
 	}
@@ -65,7 +67,7 @@ func (this *ArrayStack) Pop() interface{} {
 }
 
 func (this *ArrayStack) Peek() interface{} {
-	if this.cursor == -1 {
+	if this.IsEmpty() {
 		fmt.Println("스택에 자료가 없습니다")
 		return nil
 	}

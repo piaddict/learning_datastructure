@@ -6,77 +6,97 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func Test_New_스택생성(t *testing.T) {
+func TestNew_스택생성(t *testing.T) {
+	// when
 	stack := New(10)
-	stack.Push(5)
-	stack.Push(4)
-	stack.Push(3)
-	stack.Push(2)
 
+	// then
 	assert.NotNil(t, stack)
-	assert.Equal(t, 2, stack.Pop())
-	assert.Equal(t, 3, stack.Pop())
 }
 
-func Test_Push_빈스택_자료4개_추가(t *testing.T) {
+func TestPush_빈스택_자료4개_추가(t *testing.T) {
+	// given
 	stack := New(10)
+
+	// when
 	stack.Push(5)
 	stack.Push(4)
 	stack.Push(3)
 	stack.Push(2)
 
+	// then
 	assert.Equal(t, 2, stack.Peek())
 	assert.Equal(t, 2, stack.Peek())
 }
 
-func Test_Push_가득찬_스택_자료추가시_panic(t *testing.T) {
+func TestPush_가득찬_스택_자료추가시_panic(t *testing.T) {
+	// given
 	stack := New(3)
+
+	// when
 	stack.Push(5)
 	stack.Push(4)
-	assert.False(t, stack.IsFull())
 	stack.Push(3)
+
+	// then
 	assert.True(t, stack.IsFull())
 	assert.Nil(t, stack.Push(2))
 }
 
-func Test_Pop_스택자료를_Pop(t *testing.T) {
-	stack := New(5)
-	stack.Push(5)
-	stack.Push(4)
-	stack.Push(3)
-	stack.Push(2)
-	stack.Push(1)
+func TestPop_스택자료를_Pop(t *testing.T) {
+	// given
+	stack := &ArrayStack{
+		stack:  []interface{}{5, 4, 3, 2, nil},
+		size:   5,
+		cursor: 3,
+	}
 
-	assert.Equal(t, 1, stack.Pop())
-	assert.Equal(t, 2, stack.Pop())
-	assert.Equal(t, 3, stack.Pop())
-	assert.Equal(t, 4, stack.Pop())
-	assert.Equal(t, 5, stack.Pop())
+	// when
+	one := stack.Pop()
+	two := stack.Pop()
+	three := stack.Pop()
+	four := stack.Pop()
+	five := stack.Pop()
+
+	// then
+	assert.Equal(t, 2, one)
+	assert.Equal(t, 3, two)
+	assert.Equal(t, 4, three)
+	assert.Equal(t, 5, four)
+	assert.Equal(t, nil, five)
 }
 
-func Test_Pop_빈스택_Pop실행시_패닉(t *testing.T) {
+func TestPop_빈스택_Pop실행시_nil_반환(t *testing.T) {
+	// given
 	stack := New(10)
-	assert.True(t, stack.IsEmpty())
-	assert.Nil(t, stack.Pop())
+
+	//when
+	ret := stack.Pop() // message: stack is null
+
+	// then
+	assert.Nil(t, ret)
 }
 
-func Test_Pop_스택자료를_Peek(t *testing.T) {
-	stack := New(5)
-	stack.Push(5)
-	stack.Push(4)
-	stack.Push(3)
-	stack.Push(2)
-	stack.Push(1)
+func TestPop_스택자료를_Peek(t *testing.T) {
+	// given
+	stack := &ArrayStack{
+		stack:  []interface{}{5, 4, 3, nil, nil},
+		size:   5,
+		cursor: 2,
+	}
 
-	assert.Equal(t, 1, stack.Peek())
-	assert.Equal(t, 1, stack.Peek())
-	assert.Equal(t, 1, stack.Peek())
-	assert.Equal(t, 1, stack.Peek())
-	assert.Equal(t, 1, stack.Peek())
+	// when then
+	assert.Equal(t, 3, stack.Peek())
+	assert.Equal(t, 3, stack.Peek())
 }
 
-func Test_Peek_빈스택_Peek실행시_패닉(t *testing.T) {
+func TestPeek_빈스택_Peek실행시_nil_반환(t *testing.T) {
+	// given
 	stack := New(10)
-	assert.True(t, stack.IsEmpty())
-	assert.Nil(t, stack.Peek())
+
+	// when
+	ret := stack.Peek() // message: stack is null
+
+	// then
+	assert.Nil(t, ret)
 }
