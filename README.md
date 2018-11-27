@@ -3,7 +3,7 @@
 - 배열(array)
 - [스택(stack)](stack/)
 - [큐(queue)](queue/)
-- 연결 리스트(linked list)
+- [연결 리스트(linked list)](linkedlist/)
 - 힙(heap)
 - 트리(tree)
 - 그래프(graph)
