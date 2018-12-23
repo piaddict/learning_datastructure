@@ -1,11 +1,12 @@
 # 자료구조 연습
 
-- 배열(array)
 - [스택(stack)](stack/)
 - [큐(queue)](queue/)
-- [연결 리스트(linked list)](linkedlist/)
-- 힙(heap)
+- 덱(deque)
+- [리스트(list)](list/)
+- 해시테이블(hash table)
 - 트리(tree)
+- 힙(heap)
 - 그래프(graph)
 
 ## 자료구조란
