@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestNew_스택생성(t *testing.T) {
+func Test_New(t *testing.T) {
 	// when
 	stack := New(10)
 
@@ -14,7 +14,9 @@ func TestNew_스택생성(t *testing.T) {
 	assert.NotNil(t, stack)
 }
 
-func TestPush_빈스택_자료4개_추가(t *testing.T) {
+func Test_Push_Pop(t *testing.T) {
+	assert := assert.New(t)
+
 	// given
 	stack := New(10)
 
@@ -25,31 +27,50 @@ func TestPush_빈스택_자료4개_추가(t *testing.T) {
 	stack.Push(2)
 
 	// then
-	assert.Equal(t, 2, stack.Peek())
-	assert.Equal(t, 2, stack.Peek())
+	assert.Equal(2, stack.Pop())
+	assert.Equal(3, stack.Pop())
 }
 
-func TestPush_가득찬_스택_자료추가시_panic(t *testing.T) {
+func Test_스택이_가득차면_추가불가(t *testing.T) {
+	assert := assert.New(t)
+
 	// given
 	stack := New(3)
-
-	// when
 	stack.Push(5)
 	stack.Push(4)
 	stack.Push(3)
 
+	// when
+	pushed := stack.Push(0) // message: stack is full
+
 	// then
-	assert.True(t, stack.IsFull())
-	assert.Nil(t, stack.Push(2))
+	assert.Nil(pushed)
 }
 
-func TestPop_스택자료를_Pop(t *testing.T) {
+func Test_IsFull(t *testing.T) {
+	assert := assert.New(t)
+
 	// given
-	stack := &ArrayStack{
-		stack:  []interface{}{5, 4, 3, 2, nil},
-		size:   5,
-		cursor: 3,
-	}
+	stack := New(3)
+
+	// when, then
+	stack.Push(5)
+	stack.Push(4)
+	assert.False(stack.IsFull())
+
+	stack.Push(3)
+	assert.True(stack.IsFull())
+}
+
+func Test_스택에_자료넣고_모두확인(t *testing.T) {
+	assert := assert.New(t)
+
+	// given
+	stack := New(5)
+	stack.Push(5)
+	stack.Push(4)
+	stack.Push(3)
+	stack.Push(2)
 
 	// when
 	one := stack.Pop()
@@ -59,14 +80,14 @@ func TestPop_스택자료를_Pop(t *testing.T) {
 	five := stack.Pop()
 
 	// then
-	assert.Equal(t, 2, one)
-	assert.Equal(t, 3, two)
-	assert.Equal(t, 4, three)
-	assert.Equal(t, 5, four)
-	assert.Equal(t, nil, five)
+	assert.Equal(2, one)
+	assert.Equal(3, two)
+	assert.Equal(4, three)
+	assert.Equal(5, four)
+	assert.Nil(five)
 }
 
-func TestPop_빈스택_Pop실행시_nil_반환(t *testing.T) {
+func Test_Pop_빈스택은_nil_반환(t *testing.T) {
 	// given
 	stack := New(10)
 
@@ -77,20 +98,21 @@ func TestPop_빈스택_Pop실행시_nil_반환(t *testing.T) {
 	assert.Nil(t, ret)
 }
 
-func TestPop_스택자료를_Peek(t *testing.T) {
+func Test_Peek_자료를_꺼내지않고_확인만한다(t *testing.T) {
+	assert := assert.New(t)
+
 	// given
-	stack := &ArrayStack{
-		stack:  []interface{}{5, 4, 3, nil, nil},
-		size:   5,
-		cursor: 2,
-	}
+	stack := New(5)
+	stack.Push(5)
+	stack.Push(4)
+	stack.Push(3)
 
 	// when then
-	assert.Equal(t, 3, stack.Peek())
-	assert.Equal(t, 3, stack.Peek())
+	assert.Equal(3, stack.Peek())
+	assert.Equal(3, stack.Peek())
 }
 
-func TestPeek_빈스택_Peek실행시_nil_반환(t *testing.T) {
+func Test_Peek_실행시_빈스택은_nil_반환(t *testing.T) {
 	// given
 	stack := New(10)
 

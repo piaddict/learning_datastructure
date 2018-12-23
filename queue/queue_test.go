@@ -6,7 +6,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestNew_큐생성(t *testing.T) {
+func Test_New(t *testing.T) {
 	// when
 	queue := New(5)
 
@@ -14,7 +14,9 @@ func TestNew_큐생성(t *testing.T) {
 	assert.NotNil(t, queue)
 }
 
-func TestAdd_큐_요소추가(t *testing.T) {
+func Test_Add_Remove(t *testing.T) {
+	assert := assert.New(t)
+
 	// given
 	queue := New(4) // actual size: 3
 
@@ -23,14 +25,13 @@ func TestAdd_큐_요소추가(t *testing.T) {
 	queue.Add(10)
 
 	// then
-	assert.Equal(
-		t,
-		&ArrayQueue{queue: []interface{}{nil, 5, 10, nil}, size: 4, front: 0, rear: 2},
-		queue,
-	)
+	assert.Equal(5, queue.Remove())
+	assert.Equal(10, queue.Remove())
 }
 
-func TestAdd_가득찬_큐에_요소추가(t *testing.T) {
+func Test_가득찬_큐_요소추가_불가(t *testing.T) {
+	assert := assert.New(t)
+
 	// given
 	queue := New(4) // actual size: 3
 
@@ -41,74 +42,82 @@ func TestAdd_가득찬_큐에_요소추가(t *testing.T) {
 	queue.Add(8) // message: queue is full
 
 	// then
-	assert.Equal(
-		t,
-		&ArrayQueue{queue: []interface{}{nil, 5, 6, 7}, size: 4, front: 0, rear: 3},
-		queue,
-	)
+	assert.Equal(5, queue.Remove())
+	assert.Equal(6, queue.Remove())
+	assert.Equal(7, queue.Remove())
+	assert.Equal(nil, queue.Remove())
 }
 
-func TestRemove_큐_요소삭제(t *testing.T) {
+func Test_비어있는_큐_요소삭제_불가(t *testing.T) {
+	assert := assert.New(t)
+
 	// given
-	queue := &ArrayQueue{queue: []interface{}{nil, 3, 7, nil}, size: 4, front: 0, rear: 2}
+	queue := New(4) // actual size: 3
 
 	// when
-	removed := queue.Remove()
+	one := queue.Remove() // message: queue is empty
+	two := queue.Remove() // message: queue is empty
 
 	// then
-	assert.Equal(t, 3, removed)
-	assert.Equal(
-		t,
-		&ArrayQueue{queue: []interface{}{nil, nil, 7, nil}, size: 4, front: 1, rear: 2},
-		queue,
-	)
+	assert.Equal(nil, one)
+	assert.Equal(nil, two)
 }
 
-func TestRemove_비어있는큐_요소삭제(t *testing.T) {
+func Test_Peek_현재요소_꺼내지않고_확인(t *testing.T) {
+	assert := assert.New(t)
+
 	// given
-	queue := &ArrayQueue{queue: []interface{}{nil, 3, 7, nil}, size: 4, front: 0, rear: 2}
+	queue := New(6) // actual size: 5
+	queue.Add(5)
+	queue.Add(4)
+	queue.Add(3)
+	queue.Add(2)
 
 	// when
-	one := queue.Remove()
-	two := queue.Remove()
-	three := queue.Remove()
+	peek1 := queue.Peek()
+	peek2 := queue.Peek()
 
 	// then
-	assert.Equal(t, 3, one)
-	assert.Equal(t, 7, two)
-	assert.Equal(t, nil, three)
-	assert.Equal(
-		t,
-		&ArrayQueue{queue: []interface{}{nil, nil, nil, nil}, size: 4, front: 2, rear: 2},
-		queue,
-	)
+	assert.Equal(5, peek1)
+	assert.Equal(5, peek2)
 }
 
-func TestPeek_큐_현재요소_확인(t *testing.T) {
+func Test_Peek_현재요소_꺼내지않고_확인_비어있으면_nil(t *testing.T) {
+	assert := assert.New(t)
+
 	// given
-	queue := &ArrayQueue{queue: []interface{}{nil, 5, 4, 3, 2, nil}, size: 6, front: 0, rear: 4}
+	queue := New(6) // actual size: 5
 
 	// when
-	peek := queue.Peek()
+	peek := queue.Peek() // message: queue is empty
 
 	// then
-	assert.Equal(t, 5, peek)
+	assert.Nil(peek)
 }
 
-func TestIsFull_큐_가득차있는지(t *testing.T) {
+func Test_IsFull(t *testing.T) {
 	// given
-	queue := &ArrayQueue{queue: []interface{}{nil, 2, 4, 6, 8}, size: 5, front: 0, rear: 4}
+	queue := New(5) // actual size: 4
 
 	// when then
+	queue.Add(2)
+	queue.Add(4)
+	queue.Add(6)
+	assert.False(t, queue.IsFull())
+	queue.Add(8)
 	assert.True(t, queue.IsFull())
+	queue.Remove()
+	assert.False(t, queue.IsFull())
 }
 
-func TestIsEmpty_큐_비어있는지(t *testing.T) {
+func Test_IsEmpty(t *testing.T) {
 	// given
-	queueFoo := New(4)
-	queueBar := &ArrayQueue{queue: []interface{}{nil, nil, nil}, size: 3, front: 0, rear: 0}
+	queue := New(4) // actual size: 3
 
 	// when then
-	assert.True(t, queueFoo.IsEmpty())
-	assert.True(t, queueBar.IsEmpty())
+	assert.True(t, queue.IsEmpty())
+	queue.Add(110)
+	assert.False(t, queue.IsEmpty())
+	queue.Remove()
+	assert.True(t, queue.IsEmpty())
 }
