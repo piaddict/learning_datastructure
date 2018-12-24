@@ -50,6 +50,12 @@ Growth Factor의 최적값은 정해진 것이 아니고 각 언어나 약속에
 - 연결리스트 객체생성
   - `New() LinkedList` ::= 비어있는 연결리스트를 생성하고 반환
 - 인터페이스
+  - `AddFirst(item interface{})`
+  - `Add(index int, item interface{})`
+  - `AddLast(item interface{})`
+  - `Get(index int) interface{}`
+  - `Size() int`
+  - `Remove(index int)`
 
 ## 리스트 자료형의 효율 비교
 
