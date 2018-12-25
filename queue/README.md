@@ -21,6 +21,7 @@
 
 ## 큐의 응용
 
+- 대기열, 탐색
 - First-Come First-Served 스케줄링
 - Round Robin 스케줄링
 - ...
@@ -49,5 +50,5 @@
 
 ## 원형 큐 구현
 
-- [queue.go](./queue.go)
-- [queue_test.go](./queue_test.go)
+- [circular_queue.go](./circular_queue.go)
+- [circular_queue_test.go](./circular_queue_test.go)
