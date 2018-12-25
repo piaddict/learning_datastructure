@@ -4,11 +4,11 @@
 - [큐(queue)](queue/)
 - 덱(deque)
 - [리스트(list)](list/)
-- 해시테이블(hash table)
+- [해시 테이블(hash table)](hashtable/)
 - 트리(tree)
 - 힙(heap)
 - 그래프(graph)
 
 ## 자료구조란
 
-추상화를 통해 자료의 논리적 관계를 구조화 한것을 자료구조라고 한다.
+추상화를 통해 자료의 논리적 관계를 구조화 한 것을 자료구조라고 한다.
