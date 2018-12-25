@@ -4,8 +4,6 @@
 
 - [큐(queue)](queue/)
 
-- [덱(deque)](deque/): WIP
-
 - 우선순위 큐(priority queue)
 
 - [리스트(list)](list/)
