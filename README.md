@@ -4,15 +4,13 @@
 
 - [큐(queue)](queue/)
 
-- 우선순위 큐(priority queue)
-
 - [리스트(list)](list/)
 
 - [해시 테이블(hash table)](hashtable/)
 
 - [이진트리(binary tree)](binary-tree/)
   - [스레드 이진트리(Threaded binary tree)](binary-tree/threaded-binary-tree/)
-  - 힙(heap)
+  - [힙(heap)](binary-tree/heap/)
   - 이진탐색트리(binary search tree)
 
 - [m-way tree](m-way-tree/)
