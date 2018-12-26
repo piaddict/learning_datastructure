@@ -3,7 +3,7 @@ package list
 import "fmt"
 
 type (
-	DoubleLinkedList struct {
+	DoublyLinkedList struct {
 		head *head
 	}
 
@@ -30,14 +30,14 @@ type (
 )
 
 func New() LinkedList {
-	return &DoubleLinkedList{
+	return &DoublyLinkedList{
 		head: &head{
 			count: 0,
 		},
 	}
 }
 
-func (this *DoubleLinkedList) AddFirst(item interface{}) {
+func (this *DoublyLinkedList) AddFirst(item interface{}) {
 	newNode := &node{data: item}
 
 	begin := this.head.bNode
@@ -51,7 +51,7 @@ func (this *DoubleLinkedList) AddFirst(item interface{}) {
 	this.head.count++
 }
 
-func (this *DoubleLinkedList) Add(index int, item interface{}) {
+func (this *DoublyLinkedList) Add(index int, item interface{}) {
 	if this.checkIndexOutOfBounds(index) {
 		return
 	}
@@ -75,7 +75,7 @@ func (this *DoubleLinkedList) Add(index int, item interface{}) {
 	}
 }
 
-func (this *DoubleLinkedList) AddLast(item interface{}) {
+func (this *DoublyLinkedList) AddLast(item interface{}) {
 	newNode := &node{data: item}
 
 	end := this.head.eNode
@@ -89,7 +89,7 @@ func (this *DoubleLinkedList) AddLast(item interface{}) {
 	this.head.count++
 }
 
-func (this *DoubleLinkedList) Get(index int) interface{} {
+func (this *DoublyLinkedList) Get(index int) interface{} {
 	var node *node
 	if node = this.getNode(index); node == nil {
 		return nil
@@ -97,7 +97,7 @@ func (this *DoubleLinkedList) Get(index int) interface{} {
 	return node.data
 }
 
-func (this *DoubleLinkedList) getNode(index int) *node {
+func (this *DoublyLinkedList) getNode(index int) *node {
 	if this.checkIndexOutOfBounds(index) {
 		return nil
 	}
@@ -120,11 +120,11 @@ func (this *DoubleLinkedList) getNode(index int) *node {
 	return node
 }
 
-func (this *DoubleLinkedList) Size() int {
+func (this *DoublyLinkedList) Size() int {
 	return this.head.count
 }
 
-func (this *DoubleLinkedList) Remove(index int) {
+func (this *DoublyLinkedList) Remove(index int) {
 	if this.checkIndexOutOfBounds(index) {
 		return
 	}
@@ -147,7 +147,7 @@ func (this *DoubleLinkedList) Remove(index int) {
 	this.head.count--
 }
 
-func (this *DoubleLinkedList) checkIndexOutOfBounds(index int) bool {
+func (this *DoublyLinkedList) checkIndexOutOfBounds(index int) bool {
 	if index < 0 || index >= this.head.count {
 		fmt.Println("error: out of bounds")
 		return true
