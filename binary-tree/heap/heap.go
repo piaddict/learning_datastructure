@@ -4,6 +4,7 @@ type Heap struct {
 	data []int
 }
 
+// New 함수 인자들은 입력시 정렬되지 않음
 func New(args ...int) *Heap {
 	return &Heap{
 		data: args,

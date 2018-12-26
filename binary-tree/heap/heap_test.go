@@ -7,10 +7,10 @@ import (
 )
 
 func Test_New(t *testing.T) {
-	// given
+	// given, when
 	heap := New()
 
-	// when, then
+	// then
 	assert.NotNil(t, heap)
 }
 
