@@ -53,7 +53,13 @@
 
 하지만 Heap 자료구조를 사용하면 보다 빠르고 간단하게 우선순위 큐를 구현할 수 있다.
 
+### 우선순위 큐 인터페이스
+
+- `Enqueue`: 우선순위를 지정한 원소를 큐에 추가한다
+- `Dequeue`: 가장 높은 우선순위를 가진 원소를 큐에서 제거하고 이를 반환한다
+- `Peek`: 가장 높은 우선순위를 가진 원소를 확인한다
+
 ### 우선순위 큐 구현
 
-- priority_queue.go
-- priority_queue_test.go
+- [priority_queue.go](./priority_queue.go)
+- [priority_queue_test.go](./priority_queue_test.go)
