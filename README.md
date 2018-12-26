@@ -10,7 +10,8 @@
 
 - [해시 테이블(hash table)](hashtable/)
 
-- [이진트리(binary tree)](binary-tree/): WIP
+- [이진트리(binary tree)](binary-tree/)
+  - 스레드 이진트리(Threaded binary tree)
   - 힙(heap)
   - 이진탐색트리(binary search tree)
 
