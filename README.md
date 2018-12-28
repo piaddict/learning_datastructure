@@ -11,7 +11,8 @@
 - [이진트리(binary tree)](binary-tree/)
   - [스레드 이진트리(Threaded binary tree)](binary-tree/threaded-binary-tree/)
   - [힙(heap)](binary-tree/heap/)
-  - 이진탐색트리(binary search tree)
+  - [이진탐색트리(binary search tree)](binary-tree/binary-search-tree/)
+  - 레드-블랙 트리(red-black tree)
 
 - [m-way tree](m-way-tree/)
   - Trie

@@ -20,11 +20,13 @@
 
 - Binary Tree
   - Threaded binary tree
-  - Heap
-  - Binary Search Tree
-    - AVL Tree
-    - BB Tree
+  - **Heap**
+  - **Binary Search Tree**
+  - Self-balancing Binary Search Tree
     - Splay Tree
+    - AVL Tree
+    - BB(Weight-balanced) Tree
+    - **Red-Black Tree**
 
 ## 구현
 
