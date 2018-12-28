@@ -68,7 +68,7 @@
 ```go
 func preorder(node *node) {
     if node == nil {
-        return nil
+        return
     }
     fmt.Println(node.data)
     preorder(node.left)
@@ -77,7 +77,7 @@ func preorder(node *node) {
 
 func inorder(node *node) {
     if node == nil {
-        return nil
+        return
     }
     inorder(node.left)
     fmt.Println(node.data)
@@ -86,7 +86,7 @@ func inorder(node *node) {
 
 func postorder(node *node) {
     if node == nil {
-        return nil
+        return
     }
     postorder(node.left)
     postorder(node.right)
