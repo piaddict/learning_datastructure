@@ -80,6 +80,23 @@ Rotate(x) 연산은 x를 x의 부모위치로 올리는 연산이다.
   - g -> p의 방향과 p -> x의 방향이 다르면, Rotate(x)를 두변 실행: **Zig-Zag**
 - x가 루트가 될때까지 반복한다
 
+```go
+func Splay(x *node) {
+    for x.p != nil {
+        p := x.p
+        g := p.p
+        if g != nil {
+          if (x == p.left) == (p == g.left) {
+            Rotate(p)
+          } else {
+            Rotate(x)
+          }
+        }
+        Rotate(x);
+    }
+}
+```
+
 #### Zig / Zig-Zig / Zig-Zag
 
 - Zig
