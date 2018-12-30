@@ -12,11 +12,13 @@
   - [스레드 이진트리(Threaded binary tree)](binary-tree/threaded-binary-tree/)
   - [힙(heap)](binary-tree/heap/)
   - [이진탐색트리(binary search tree)](binary-tree/binary-search-tree/)
+  - [자가 균형 이진탐색트리(self balancing binary search tree)](binary-tree/self-balancing-bst/)
   - 레드-블랙 트리(red-black tree)
 
 - [m-way tree](m-way-tree/)
-  - Trie
-  - m-way search tree
+  - [trie](m-way-tree/trie/)
+  - [b tree](m-way-tree/b-tree/)
+  - [2-3 tree](m-way-tree/2-3-tree/)
 
 - 그래프(graph)
 
