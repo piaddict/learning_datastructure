@@ -5,7 +5,7 @@ import (
 )
 
 type (
-	// ArrayStack 구조체는 내부 자료구조로 배열을 사용한다
+	// ArrayStack 구조체는 내부 자료구조로 슬라이스를 사용한다
 	ArrayStack struct {
 		stack  []interface{}
 		size   int

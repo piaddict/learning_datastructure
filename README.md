@@ -1,28 +1,28 @@
 # 자료구조 연습
 
-- [스택(stack)](stack/)
+- [스택(Stack)](stack/)
 
-- [큐(queue)](queue/)
+- [큐(Queue)](queue/)
 
-- [리스트(list)](list/)
+- [리스트(List)](list/)
 
-- [해시 테이블(hash table)](hashtable/)
+- [해시 테이블(Hashtable)](hashtable/)
 
-- [이진트리(binary tree)](binary-tree/)
-  - [스레드 이진트리(Threaded binary tree)](binary-tree/threaded-binary-tree/)
-  - [힙(heap)](binary-tree/heap/)
-  - [이진탐색트리(binary search tree)](binary-tree/binary-search-tree/)
-  - [자가 균형 이진탐색트리(self balancing binary search tree)](binary-tree/self-balancing-bst/)
-  - 레드-블랙 트리(red-black tree)
+- [이진트리(Binary tree)](binary-tree/)
+  - [스레드 이진트리(Threaded Binary Tree)](binary-tree/threaded-binary-tree/)
+  - [힙(Heap)](binary-tree/heap/)
+  - [이진탐색트리(Binary Search Tree)](binary-tree/binary-search-tree/)
+  - [자가 균형 이진탐색트리(Self Balancing Binary Search Tree)](binary-tree/self-balancing-bst/)
+  - 레드-블랙 트리(Red-Black Tree)
 
-- [m-way tree](m-way-tree/)
-  - [trie](m-way-tree/trie/)
-  - [b tree](m-way-tree/b-tree/)
-  - [2-3 tree](m-way-tree/2-3-tree/)
+- [m-way Tree](m-way-tree/)
+  - [Trie](m-way-tree/trie/)
+  - [B Tree](m-way-tree/b-tree/)
+  - [2-3 Tree](m-way-tree/2-3-tree/)
 
-- 그래프(graph)
+- 그래프(Graph)
 
-- 그래프 탐색(searching tree or graph)
+- 그래프 탐색(Graph Search)
 
 ## 자료구조란
 

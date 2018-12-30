@@ -24,7 +24,7 @@
   - **Binary Search Tree**
   - Self-balancing Binary Search Tree
     - Splay Tree
-    - **AVL Tree**
+    - AVL Tree
     - BB(Weight-balanced) Tree
     - **Red-Black Tree**
 
