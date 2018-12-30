@@ -1,5 +1,12 @@
 # B Tree
 
+| Algorithm | Average | Worst case |
+| --- | --- | --- |
+| Space | O(n) | O(n) |
+| Search | O(log n) | O(log n) |
+| Insert | O(log n) | O(log n) |
+| Delete | O(log n) | O(log n) |
+
 노드의 가지 개수를 늘리는 것만이 m-way 탐색트리의 성능을 향상시키는 유일한 방법은 아니다.
 이진 탐색트리와 마찬가지로 트리의 균형을 유지하며 탐색 성능을 개선할 수 있다.
 

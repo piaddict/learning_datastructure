@@ -10,12 +10,47 @@
 효율성을 위해 (거의) 완전한 균형 트리를 구성하는 여러 구현방식이 존재한다.
 아래 방식의 경우 탐색/삽입/삭제 연산의 시간복잡도가 `O(logn)`이다.
 
+## 공통연산: Rotate(x)
+
+대상 `x`, 부모 `y`, 회전방향과 같은쪽 `x`의 자식 `T2`, 조부모 `g`
+
+```text
+    y                              x
+   / \       Right Rotation       /  \
+  x   T3     – – – – – – – >     T1   y
+ / \                                 / \
+T1  T2                              T2  T3
+```
+
+- Right Rotation
+  - y.left = T2
+  - x.right = y
+  - g.child = x || y가 루트라면 tree.root = x
+
+```text
+    y                              x
+   / \       Left Rotation        /  \
+  T3  x     – – – – – – – >      y    T2
+     / \                        / \
+    T1  T2                     T3  T1
+```
+
+- Left Rotation
+  - y.right = T2
+  - x.left = y
+  - g.child = x || y가 루트라면 tree.root = x
+
 ## Splay 트리
+
+| Algorithm | Average | Worst case |
+| --- | --- | --- |
+| Space | O(n) | O(n) |
+| Search | O(log n) | amortized O(log n) |
+| Insert | O(log n) | amortized O(log n) |
+| Delete | O(log n) | amortized O(log n) |
 
 Splay 트리는 자주 탐색하는 키를 가진 노드를 루트에 가깝게 위치하도록 구성한 BS 트리이다.
 이 트리는 Splay 연산을 적용하여 최근에 접근한 노드를 루트에 위치시켜 트리를 재구성한다.
-
-탐색/삽입/삭제 연산의 시간복잡도는 `amortized O(log n)`이다.
 
 ### Splay 연산
 
@@ -62,58 +97,14 @@ func Splay(x *node) {
   - x와 p의 간선 연결을 회전시키고(`Rotate(x)`)
   - x와 x의 새로운 부모 p와의 간선 연결을 회전시킨다(`Rotate(x)`)
 
-### Rotate(x)
-
-대상 `x`, 부모 `p`, 회전방향과 같은쪽 `x`의 자식 `b`
-
-- p의 회전방향 반대쪽 자식으로 b를 지정
-- x의 회전방향 쪽 자식으로 p를 지정
-- x의 부모로 p의 부모 지정
-- p의 부모로 x를 지정
-- b의 부모로 p를 지정
-- p의 부모가 자식으로 가리키던 p를 x로 지정
-  - p의 부모가 없다면(루트) tree 포인터에 x를 지정
-
-```go
-type node struct {
-    left *node
-    right *node
-    p *node
-}
-
-func Rotate(x *node) {
-    p := x.p
-    var b *node;
-    if x == p.left {
-        b = x.right
-        p.left = b
-        x.right = p
-    } else {
-        b = x.left
-        p.right = b
-        x.left = p
-    }
-    x.p = p.p
-    p.p = x
-    if b != nil {
-        b.p = p
-    }
-
-    if x.p != nil {
-      var pp *node
-      if p == x.p.left {
-        pp = x.p.left
-      } else {
-        pp = x.p.right
-      }
-      pp = x
-    } else {
-      tree = x
-    }
-}
-```
-
 ## AVL 트리
+
+| Algorithm | Average | Worst case |
+| --- | --- | --- |
+| Space | O(n) | O(n) |
+| Search | O(log n) | O(log n) |
+| Insert | O(log n) | O(log n) |
+| Delete | O(log n) | O(log n) |
 
 노드의 삽입과 삭제가 일어날 때 노드 키 값과 서브트리 키값 사이의 관계를 유지하며 균형을 만들기는 쉽지않다.
 
@@ -138,6 +129,10 @@ AVL 트리는 직접 탐색 성능이 좋다. 비록 완전히 균형 잡히지�
 
 ### Single Rotation
 
+불균형이 바깥쪽 서브트리에서 발생하는 경우, Single Rotation을 실행한다
+
+Left Left Case / Right Right Case
+
 ```text
     y                              x
    / \       Right Rotation       /  \
@@ -146,16 +141,9 @@ AVL 트리는 직접 탐색 성능이 좋다. 비록 완전히 균형 잡히지�
 T1  T2       Left Rotation         T2  T3
 ```
 
-불균형이 바깥쪽 서브트리에서 발생하는 경우
-
-Right(Left) Rotation(부모노드)
-
-- 부모 노드의 왼쪽(오른쪽) 자식 포인터를 회전하려는 대상 노드의 오른쪽(왼쪽) 자식 노드로 변경
-- 회전하려는 대상 노드의 오른쪽(왼쪽) 노드 포인터를 부모 노드로 변경
-
 ### Double Rotation
 
-불균형이 안쪽 서브트리에서 발생하는 경우, 반대 방향의 Single Rotation을 연속으로 실시한다
+불균형이 안쪽 서브트리에서 발생하는 경우, 반대 방향의 Single Rotation을 연속으로 실행한다
 
 Left Right Case
 

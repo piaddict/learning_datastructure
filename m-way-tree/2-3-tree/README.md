@@ -1,5 +1,12 @@
 # 2-3 Tree
 
+| Algorithm | Average | Worst case |
+| --- | --- | --- |
+| Space | O(n) | O(n) |
+| Search | O(log n) | O(log n) |
+| Insert | O(log n) | O(log n) |
+| Delete | O(log n) | O(log n) |
+
 차수가 2 또는 3인 내부 노드를 갖는 트리를 2-3 트리라고 한다.
 이때 차수가 2인 노드를 2-노드, 3인 노드를 3-노드라고 부른다.
 
