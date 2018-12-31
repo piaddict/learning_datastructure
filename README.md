@@ -20,9 +20,9 @@
   - [B Tree](m-way-tree/b-tree/)
   - [2-3 Tree](m-way-tree/2-3-tree/)
 
-- 그래프(Graph)
+- [그래프(Graph)](graph/)
 
-- 그래프 탐색(Graph Search)
+- [그래프 탐색(Graph Search)](graph-search/)
 
 ## 자료구조란
 
