@@ -102,11 +102,11 @@ func (bst *BSTree) Insert(key int) {
 	if node == nil {
 		bst.root = &Node{key: key}
 	} else {
-		bst.insertSubtree(key)
+		bst.insertNewNode(key)
 	}
 }
 
-func (bst *BSTree) insertSubtree(key int) {
+func (bst *BSTree) insertNewNode(key int) {
 	var nodePtr **Node
 	node := bst.root
 	newNode := &Node{key: key}
