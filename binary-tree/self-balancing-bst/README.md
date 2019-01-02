@@ -12,33 +12,33 @@
 
 ## 공통연산: Rotate(x)
 
-대상 `x`, 부모 `y`, 회전방향과 같은쪽 `x`의 자식 `T2`, 조부모 `g`
+대상 `x`, 부모 `p`, 회전방향과 같은쪽 `x`의 자식 `T2`, 조부모 `g`
 
 ```text
-    y                              x
+    p                              x
    / \       Right Rotation       /  \
-  x   T3     – – – – – – – >     T1   y
+  x   T3     – – – – – – – >     T1   p
  / \                                 / \
 T1  T2                              T2  T3
 ```
 
 - Right Rotation
-  - y.left = T2
-  - x.right = y
-  - g.child = x || y가 루트라면 tree.root = x
+  - p.left = T2
+  - x.right = p
+  - g.child = x || p가 루트라면 tree.root = x
 
 ```text
-    y                              x
+    p                              x
    / \       Left Rotation        /  \
-  T3  x     – – – – – – – >      y    T2
+  T3  x     – – – – – – – >      p    T2
      / \                        / \
     T1  T2                     T3  T1
 ```
 
 - Left Rotation
-  - y.right = T2
-  - x.left = y
-  - g.child = x || y가 루트라면 tree.root = x
+  - p.right = T2
+  - x.left = p
+  - g.child = x || p가 루트라면 tree.root = x
 
 ## Splay 트리
 

@@ -22,9 +22,7 @@
 - 루트 노드는 Black이다
 - 자식이 없는경우 NULL 노드를 자식으로 가지며 모든 NULL 노드는 Black이다
 - 노드가 Red이면 그 노드의 자식은 모두 Black이다
-- 각 노드로부터 노드의 자손인 leaf로 가는 경로들은 모두 같은 수의 Black 노드를 포함한다
-
-각 노드는 leaf 노드로부터 해당노드에 이르는 가장 긴 경로인 높이(h)와 경로상의 검은노드수(bh)를 갖고있다
+- 각 노드로부터 노드의 자손인 leaf로 가는 경로들은 모두 같은 수의 Black 노드를 포함한다(black height)
 
 ## 삽입
 
@@ -41,30 +39,40 @@
 nil nil
 ```
 
-삽입할 요소 `x`는 Red(Leaf 노드가 Black이므로)
+> 삽입할 요소 `x`는 Red(Leaf 노드의 자식노드 nil은 Black이므로)
 
-- x == Root로 삽입하는 경우: x -> Black
+`Rebalance(x)`
 
-- parent == Black: 삽입
+- `p == nil`
+  - root노드 위치이므로 Black으로 색을 변경하고 **Rebalance 종료**
 
-- parent == Red (g == Black)
+- `p.color == Black`
+  - 부모 노드 색이 Black이면 **Rebalance 종료**
 
-  - uncle(부모노드의 sibling) == Red
-    - p와 u를 Black으로 변경
-    - g를 Red로 변경
-    - g에 대해서 **재배열 연산**을 재귀적으로 적용한다(g는 삽입 직후 x의 상태와 같다)
+- `p.color == Red && g != nil`
 
-  - uncle(부모노드의 sibling) == Black (nil인 경우도 Black임)
-    - p와 g의 색을 반전(p = Black, g = Red)
+  - `uncle(부모노드의 sibling) == Red`
+    - > Recoloring: Red-Red 문제를 Red를 올려보내면서 처리(처리가 완료되지 않음)
+    - p와 u를 Red에서 **Black**으로 변경
+    - g를 Black에서 **Red**로 변경
+    - 색을 변경한 뒤에도 leaf 노드까지 Black 개수는 같음
+    - **Rebalance(g)**를 재귀적으로 적용한다
+      - g의 부모노드가 없다면 g를 Black으로 변경하고 종료
+      - g의 부모노드가 Black이라면 종료
+      - g의 부모노드가 Red인경우 -> Recoloring or Restructuring
+
+  - `uncle(부모노드의 sibling) == Black (nil인 경우도 Black임)`
+    - > Restructruing: Red-Red 문제를 Rotation으로 처리
     - p가 g의 왼쪽 자식이고, x가 p의 왼쪽 자식인 경우: Left-Left Case
-      - RightRotate(g)
+      - RightRotate(p)
     - p가 g의 왼쪽 자식이고, x가 p의 오른쪽 자식인 경우: Left-Right Case
-      - LeftRotate(p)
-      - RightRotate(g)
+      - LeftRotate(x)
+      - RightRotate(p)
     - p가 g의 오른쪽 자식이고, x가 p의 오른쪽 자식인 경우: Right-Right Case
-      - LeftRotate(g)
-    - p가 g의 오른쪽 자식이고, x가 p의 왼쪽 자식인 경우: Right-Left Case
-      - RightRotate(g)
       - LeftRotate(p)
+    - p가 g의 오른쪽 자식이고, x가 p의 왼쪽 자식인 경우: Right-Left Case
+      - RightRotate(x)
+      - LeftRotate(p)
+    - p 위치와 g 위치의 노드 색을 반전(p 위치 -> Black, g 위치 -> Red)
 
 ## 삭제
